@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeadsGeneration</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header class="header">
+      <div class="header-inner">
+        <div class="logo">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <rect width="32" height="32" rx="8" fill="#3b82f6"/>
+            <path d="M8 22l6-8 4 5 3-4 5 7H8z" fill="white" opacity="0.9"/>
+            <circle cx="22" cy="10" r="3" fill="white"/>
+          </svg>
+          <span class="logo-text">LeadsGen</span>
+        </div>
+        <p class="header-sub">Extract business contact info from Google Maps</p>
+      </div>
+    </header>
+
+    <main class="main">
+
+      <section class="search-card card">
+        <h2 class="section-title">Search Parameters</h2>
+        <form id="searchForm" class="form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" id="location" placeholder="e.g. New York, London, São Paulo" required />
+            </div>
+            <div class="form-group">
+              <label for="businessType">Business Type / Title</label>
+              <input type="text" id="businessType" placeholder="e.g. Marketing Agency, Law Firm, Dentist" required />
+            </div>
+            <div class="form-group form-group--small">
+              <label for="maxResults">Max Results</label>
+              <select id="maxResults">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" id="searchBtn" class="btn btn--primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+            Search Leads
+          </button>
+        </form>
+      </section>
+
+      <div id="statusBar" class="status-bar hidden">
+        <div class="spinner"></div>
+        <span id="statusText">Starting search...</span>
+      </div>
+
+      <div id="errorBanner" class="error-banner hidden">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span id="errorText">An error occurred.</span>
+      </div>
+
+      <section id="resultsSection" class="results-section hidden">
+        <div class="results-header">
+          <div class="results-meta">
+            <span class="badge" id="resultCount">0</span>
+            <span class="results-label">leads found</span>
+          </div>
+          <button id="exportBtn" class="btn btn--outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export CSV
+          </button>
+        </div>
+        <div class="table-wrapper">
+          <table id="resultsTable">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Business Name</th>
+                <th>Category</th>
+                <th>Phone</th>
+                <th>Website</th>
+                <th>Address</th>
+                <th>Rating</th>
+                <th>Reviews</th>
+                <th>Maps</th>
+              </tr>
+            </thead>
+            <tbody id="resultsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      Powered by <a href="https://apify.com" target="_blank" rel="noopener">Apify</a> · Google Maps Scraper
+    </footer>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
